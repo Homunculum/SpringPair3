@@ -1,6 +1,7 @@
 
 package com.tobeto.spring.b;
 
+
 public class User {
     private Long id;
     private String name;

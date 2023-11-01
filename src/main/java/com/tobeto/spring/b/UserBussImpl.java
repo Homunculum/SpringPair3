@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
-public class UserBussImpl implements UserBuss {
+    @Service
+    public class UserBussImpl implements UserBuss {
     private final UserDao userDao;
-@Autowired
+    @Autowired
     public UserBussImpl(UserDao userDao) {
         this.userDao = userDao;
     }

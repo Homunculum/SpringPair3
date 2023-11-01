@@ -5,31 +5,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/users")
 public class UserController {
 
     private final UserBuss userBuss;
 
-
     public UserController(UserBuss userBuss) {
         this.userBuss = userBuss;
         List<User> allUsers = userBuss.getUsers();
     }
-
     @GetMapping()
     public List<User> getAllUsers() {
 
 
-
         return this.userBuss.getUsers();
     }
-
     @PostMapping()
     public String createUser(@RequestBody User user) {
-
-
         userBuss.addUser(user);
-
         return "Kullanıcı oluşturuldu: " + user.getName() + " (ID: " + user.getId() + ")";
     }
 
@@ -44,8 +38,8 @@ public class UserController {
 
             userBuss.updateUser(existingUser);
 
-            return "Kullanıcı güncellendi: ID: " + id + ", Yeni Bilgiler: İsim: " + existingUser.getName() +
-                    ", E-mail: " + existingUser.getEmail() + ", Yaş: " + existingUser.getAge();
+            return "Kullanıcı güncellendi: ID: " + id + ", Yeni Bilgiler: \nİsim: " + existingUser.getName() +
+                    ", \nE-mail: " + existingUser.getEmail() + ", \nYaş: " + existingUser.getAge();
         } else {
             return "Kullanıcı bulunamadı. Güncelleme başarısız.";
         }
