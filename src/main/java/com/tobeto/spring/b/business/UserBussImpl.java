@@ -1,6 +1,8 @@
 // UserBussImpl.java
-package com.tobeto.spring.b;
+package com.tobeto.spring.b.business;
 
+import com.tobeto.spring.b.dataAccess.UserDao;
+import com.tobeto.spring.b.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,15 +26,15 @@ import java.util.List;
     }
 
     @Override
-    public void deleteUser(Long id) {
+    public void deleteUser(int id) {
         userDao.deleteUser(id);
     }
 
     @Override
-    public User getUserById(Long id) {
+    public User getUserById(int id) {
         List<User> users = userDao.getUsers();
         for (User user : users) {
-            if (user.getId().equals(id)) {
+            if (user.getId()== id) {
                 return user;
             }
         }
@@ -43,7 +45,7 @@ import java.util.List;
     public void updateUser(User user) {
         List<User> users = userDao.getUsers();
         for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getId().equals(user.getId())) {
+            if (users.get(i).getId()==user.getId()) {
                 users.set(i, user);
                 break;
             }

@@ -1,6 +1,9 @@
 // UserController.java
 package com.tobeto.spring.b;
 
+import com.tobeto.spring.b.business.UserBuss;
+import com.tobeto.spring.b.entities.User;
+import jakarta.annotation.PostConstruct;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -14,6 +17,13 @@ public class UserController {
     public UserController(UserBuss userBuss) {
         this.userBuss = userBuss;
         List<User> allUsers = userBuss.getUsers();
+
+    }
+    @PostConstruct
+    public void addUser () {
+       userBuss.addUser(new User(1,"kadir", "kadir@tobeto", 32));
+       userBuss.addUser(new User(2,"yasin", "yasin@tobeto", 23));
+       userBuss.addUser(new User(3,"nursel", "nursel@tobeto", 29));
     }
     @GetMapping()
     public List<User> getAllUsers() {
@@ -28,7 +38,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public String updateUser(@PathVariable Long id, @RequestBody User user) {
+    public String updateUser(@PathVariable int id, @RequestBody User user) {
         User existingUser = userBuss.getUserById(id);
 
         if (existingUser != null) {
@@ -46,7 +56,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable Long id) {
+    public String deleteUser(@PathVariable int id) {
         userBuss.deleteUser(id);
         return "Kullanıcı silindi: " + id;
     }

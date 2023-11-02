@@ -1,14 +1,14 @@
 
-package com.tobeto.spring.b;
+package com.tobeto.spring.b.entities;
 
 
 public class User {
-    private Long id;
+    private int id;
     private String name;
     private String email;
     private int age;
 
-    public User(Long id, String name, String email, int age) {
+    public User(int id, String name, String email, int age) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -17,11 +17,11 @@ public class User {
 
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
